@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>India vs Australia — Live Player</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+<style>
+body{margin:0;background:#050d24;font-family:Arial;color:#fff}
+.player{max-width:900px;margin:auto;padding:12px}
+video{width:100%;background:#000;border-radius:12px}
+select{padding:8px;border-radius:8px;background:#111;color:#fff}
+.thumb{width:90px;border-radius:10px;overflow:hidden}
+.wa-fixed{position:fixed;bottom:12px;left:12px;z-index:9999}
+.wa-fixed a{background:#25D366;color:#000;padding:10px 18px;border-radius:30px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="player">
+<h2>India vs Australia — Live</h2>
+<div class="thumb"><img src="https://i.ibb.co/39CnMGNL/x.jpg" width="100%"></div><br>
+<video id="video" poster="https://i.ibb.co/39CnMGNL/x.jpg" controls playsinline></video>
+<br>
+<label>Quality:
+<select id="quality">
+<option value="1080">1080p</option>
+<option value="1080new">1080p New</option>
+<option value="720">720p</option>
+<option value="360">360p (Primary)</option>
+</select>
+</label>
+</div>
+<div class="wa-fixed">
+<a href="https://whatsapp.com/channel/0029VbAvIUo2ZjCu4eWjOw1T/103" target="_blank">Join WhatsApp</a>
+</div>
+<script>
+const streams={
+"1080":"https://hugh.cdn.rumble.cloud/live/k5e12sb4/slot-101/v594-ykwe/chunklist.m3u8",
+"1080new":"https://hugh.cdn.rumble.cloud/live/k5e12sb4/slot-101/v594-ykwe_1080p/chunklist.m3u8",
+"720":"https://hugh.cdn.rumble.cloud/live/k5e12sb4/slot-101/v594-ykwe_720p/chunklist.m3u8",
+"360":"https://hugh.cdn.rumble.cloud/live/k5e12sb4/slot-101/v594-ykwe_360p/chunklist.m3u8"
+};
+const v=document.getElementById('video');
+const q=document.getElementById('quality');
+function load(l){let u=streams[l];if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=u;}else if(Hls.isSupported()){if(window.hls){window.hls.destroy();}window.hls=new Hls();hls.loadSource(u);hls.attachMedia(v);}else{v.src=u;}}
+q.onchange=()=>load(q.value);
+load("360");
+</script>
+</body>
+</html>
